@@ -18,57 +18,15 @@ $('#my_el').relocate('origin');
 
 
 		// PRIVATE VARIABLES
-
+        
    		var data_id = 'relocate_data';
 		var data_target_id = 'relocate_data_target';
 		var s_ph = '<span style="display:none;" />';
 
 		// PUBLIC METHODS
-
+        
 		var methods = {
-			init: function (options) {
-
-				/* 
-				//maintains chainability
-				return this.each(function () {
-
-					// DEFAULT SETTINGS (for init method)
-					var settings = {
-						itemSelector: '.selected'                       
-					};
-
-					//if options exist, merge them with the default settings (later on use settings)
-					if (options) { $.extend(settings, options); }
-
-					var $this = $(this),
-				    	data = $this.data(pluginName);
-
-					//if the plugin hasn't been initialized yet,
-					//read DATA previously saved
-					if (!data) {
-					      
-						// PLUGIN INITIALIZATION CODE HERE
-						// ...
-
-						//save some data you need
-						//data = { something: '...' };
-						//...
-
-						//call a private function
-						//dosomethingprivate($this);
-
-						//if you need, bind event handlers using a namespace
-						//$this.bind('click.' + pluginName, methods.hide);
-
-						//save DATA on the object
-						$this.data(pluginName, data);
-					}
-				   
-				});
-
-				*/
-
-			},
+			init: function (options) { },
 
 			after: function(target) {
 				return this.each(function(){
@@ -76,12 +34,26 @@ $('#my_el').relocate('origin');
 						data = getElementData($this),
 						target_data = getTargetData(target);
 					
-					if (target_data.target_ph.size() > 0) {
-						//move the element after the target placeholder
-				    	target_data.target_ph.after($this.detach());
+					if (target_data.target_after_ph.size() > 0) {
+						//move the element after the target
+				    	target_data.target_after_ph.after($this.detach());
 					}
 
 				});
+			},
+
+			before: function (target) {
+			    return this.each(function () {
+			        var $this = $(this),
+						data = getElementData($this),
+						target_data = getTargetData(target);
+
+			        if (target_data.target_before_ph.size() > 0) {
+			            //move the element before the target
+			            target_data.target_before_ph.after($this.detach());
+			        }
+
+			    });
 			},
 
 			origin: function() {
@@ -123,11 +95,15 @@ $('#my_el').relocate('origin');
 			var data = $target.data(data_target_id);
 			if (!data) {
 
-				var target_ph = $(s_ph);
-				$target.after(target_ph);
+				var target_after_ph = $(s_ph);
+				$target.after(target_after_ph);
+
+				var target_before_ph = $(s_ph);
+				$target.before(target_before_ph);
 
 				data = {
-					target_ph: target_ph
+				    target_after_ph: target_after_ph,
+				    target_before_ph: target_before_ph
 				};
 
 				$target.data(data_target_id, data);

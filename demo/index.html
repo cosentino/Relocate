@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie10 lt-ie9"> <![endif]-->
+<!--[if IE 9]>    <html class="no-js lt-ie10"> <![endif]-->
+<!--[if IE 10]>   <html class="no-js ie10"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+	<title>jResRel Test</title>
+	<style>
+		p {
+			width:300px;
+			background:#ff0000;
+		}
+		#my_el { 
+			width:300px;
+			background:#00ff00;
+		}
+	</style>
+</head>
+<body>
+
+<div>
+	<p class="a">A</p>
+	<div id="my_el">DOM ELEMENT</div>
+	<p class="b">B</p>
+	<p class="c">C</p>
+	<p class="d">D</p>
+</div>
+
+
+<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="js/jrespond/js/jRespond.js"></script>
+<script type="text/javascript" src="../src/relocate.js"></script>
+
+<script type="text/javascript">
+	$(function(){
+
+	    /* Responsive Breakpoints definition*/
+		var jRes = jRespond([
+	        {
+	            label: 'handheld_portrait',
+	            enter: 0,
+	            exit: 479
+	        }, {
+	            label: 'handheld_landscape',
+	            enter: 480,
+	            exit: 767
+	        }, {
+	            label: 'tablet',
+	            enter: 768,
+	            exit: 959
+	        }, {
+	            label: 'laptop',
+	            enter: 960,
+	            exit: 1336
+	        }, {
+	            label: 'desktop',
+	            enter: 1337,
+	            exit: 10000
+	        }
+		]);
+
+		/* RWD Dom Element Relocation */
+		var $my_el = $('#my_el');
+
+
+
+		// *** modalità di utilizzo tramite i metodi statici di relocate ***
+		jRes.addFunc({
+		    breakpoint: ['destop', 'laptop'],
+		    enter: function () {
+		    	$my_el.relocate('origin');
+		    }
+		});
+
+		jRes.addFunc({
+		    breakpoint: ['tablet'],
+		    enter: function () {
+		    	$my_el.relocate('after', '.b');
+		    }
+		});
+
+		jRes.addFunc({
+		    breakpoint: ['handheld_landscape'],
+		    enter: function () {
+		    	$my_el.relocate('after', '.c');
+		    }
+		});
+
+		jRes.addFunc({
+		    breakpoint: ['handheld_portrait'],
+		    enter: function () {
+				$my_el.relocate('after', '.d');
+		    }
+		});
+
+
+		// *** modalità di utilizzo tramite i metodi statici di relocate ***
+		/*
+		jRes.addFunc({
+		    breakpoint: ['tablet'],
+		    enter: function () {
+				relocate.after($my_el, '.b');
+		    },
+		    exit: function () {
+	    		relocate.origin($my_el);
+		    }
+		});
+
+		jRes.addFunc({
+		    breakpoint: ['handheld_landscape'],
+		    enter: function () {
+				relocate.after($my_el, '.c');
+		    },
+		    exit: function () {
+	    		relocate.origin($my_el);
+		    }
+		});
+
+		jRes.addFunc({
+		    breakpoint: ['handheld_portrait'],
+		    enter: function () {
+				relocate.after($my_el, '.d');
+		    },
+		    exit: function () {
+	    		relocate.origin($my_el);
+		    }
+		});
+		*/
+
+
+
+
+		// *** modalità di utilizzo tramite il plugin (con breakpoint) DA IMPLEMENTARE ***
+		/*
+		relocate($my_el, [
+			{
+				breakpoint: 'laptop',
+				relocate: { after: '.b' }
+			}, {
+				breakpoint: 'handheld_landscape',
+				relocate: { after: '.c' }
+			}, {
+				breakpoint: 'handheld_portrait',
+				relocate: { after: '.d' }
+			}
+		]);
+		*/
+
+		//possibilità di aggiungere/sostituire regole in un secondo momento DA IMPLEMENTARE
+		/*
+		relocate($my_el).addRules([
+			{
+				breakpoint: 'mini',
+				relocate: { after: '.e' }
+			}
+		]);
+		*/
+
+
+	});
+</script>
+
+</body>
+</html>

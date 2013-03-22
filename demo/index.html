@@ -63,12 +63,9 @@
 	        }
 		]);
 
-		/* RWD Dom Element Relocation */
+		/* DOM Element Relocation */
 		var $my_el = $('#my_el');
 
-
-
-		// *** modalità di utilizzo tramite i metodi statici di relocate ***
 		jRes.addFunc({
 		    breakpoint: ['destop', 'laptop'],
 		    enter: function () {
@@ -98,44 +95,8 @@
 		});
 
 
-		// *** modalità di utilizzo tramite i metodi statici di relocate ***
 		/*
-		jRes.addFunc({
-		    breakpoint: ['tablet'],
-		    enter: function () {
-				relocate.after($my_el, '.b');
-		    },
-		    exit: function () {
-	    		relocate.origin($my_el);
-		    }
-		});
-
-		jRes.addFunc({
-		    breakpoint: ['handheld_landscape'],
-		    enter: function () {
-				relocate.after($my_el, '.c');
-		    },
-		    exit: function () {
-	    		relocate.origin($my_el);
-		    }
-		});
-
-		jRes.addFunc({
-		    breakpoint: ['handheld_portrait'],
-		    enter: function () {
-				relocate.after($my_el, '.d');
-		    },
-		    exit: function () {
-	    		relocate.origin($my_el);
-		    }
-		});
-		*/
-
-
-
-
-		// *** modalità di utilizzo tramite il plugin (con breakpoint) DA IMPLEMENTARE ***
-		/*
+		// TODO
 		relocate($my_el, [
 			{
 				breakpoint: 'laptop',
@@ -149,9 +110,9 @@
 			}
 		]);
 		*/
-
-		//possibilità di aggiungere/sostituire regole in un secondo momento DA IMPLEMENTARE
+		
 		/*
+		// TODO 
 		relocate($my_el).addRules([
 			{
 				breakpoint: 'mini',

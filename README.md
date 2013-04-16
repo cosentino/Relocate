@@ -1,6 +1,6 @@
 # Relocate
 
-### Relocate is jQuery plugin to move elements around the DOM and bring them back.
+### Relocate is a jQuery plugin to move elements around the DOM and bring them back.
 
 
 ## Simple usage example
@@ -8,7 +8,7 @@
 	//move the element '#my_el' after the target '.b' element
 	$('#my_el').relocate('after', '.target_element');
 
-	//whenever you what you can bring the element back to its original position
+	//whenever you want you can bring the element back to its original position
 	$('#my_el').relocate('origin');
 
 

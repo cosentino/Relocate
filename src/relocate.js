@@ -56,6 +56,34 @@ $('#my_el').relocate('origin');
 			    });
 			},
 
+			append: function (target) {
+			    return this.each(function () {
+			        var $this = $(this),
+						data = getElementData($this),
+						target_data = getTargetData(target);
+
+			        if (target_data.target_append_ph.size() > 0) {
+			            //move the element inside the target at the end
+			            target_data.target_append_ph.after($this.detach());
+			        }
+
+			    });
+			},
+
+			prepend: function (target) {
+			    return this.each(function () {
+			        var $this = $(this),
+						data = getElementData($this),
+						target_data = getTargetData(target);
+
+			        if (target_data.target_prepend_ph.size() > 0) {
+			            //move the element inside the target at the beginning
+			            target_data.target_prepend_ph.after($this.detach());
+			        }
+
+			    });
+			},
+
 			origin: function() {
 				return this.each(function(){
 					var $this = $(this),
@@ -88,8 +116,7 @@ $('#my_el').relocate('origin');
 			}
 			return data;
 		};
-		
-		
+    		
 		var getTargetData = function(target) {
 			var $target = $(target);
 			var data = $target.data(data_target_id);
@@ -101,9 +128,17 @@ $('#my_el').relocate('origin');
 				var target_before_ph = $(s_ph);
 				$target.before(target_before_ph);
 
+				var target_append_ph = $(s_ph);
+				$target.append(target_append_ph);
+
+				var target_prepend_ph = $(s_ph);
+				$target.prepend(target_prepend_ph);
+
 				data = {
 				    target_after_ph: target_after_ph,
-				    target_before_ph: target_before_ph
+				    target_before_ph: target_before_ph,
+				    target_append_ph: target_append_ph,
+				    target_prepend_ph: target_prepend_ph
 				};
 
 				$target.data(data_target_id, data);

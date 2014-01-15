@@ -1,6 +1,6 @@
 # Relocate
 
-### Relocate is a jQuery plugin to move elements around the DOM and bring them back.
+Relocate is a jQuery plugin to move elements around the DOM and bring them back.
 
 
 ## Simple usage example
@@ -14,7 +14,7 @@
 
 
 ## Responsive Web Design: 
-#   Usage with jRespond to move elements whenever the window width cross a predefined breakpoint.
+   Usage with jRespond (https://github.com/ten1seven/jRespond) to move elements whenever the window width crosses a predefined breakpoint.
 
 	#Js dependencies
 	<script type="text/javascript" src="js/jrespond/js/jRespond.js"></script>
